@@ -48,3 +48,18 @@ git checkout develop
 git merge upstream/develop      # or: git rebase upstream/develop
 git push origin develop
 ```
+
+## Testing & Building (`just`)
+
+Each sub-repository (`nano-node` and `rsnano-node`) manages its own build, test, and lint execution using local `Justfile`s. All building, testing, linting, and daemon execution must be invoked via `just` within the respective repo directory.
+
+```bash
+# C++ node testing (from nano-node/)
+cd nano-node && just test
+
+# Rust node testing (from rsnano-node/)
+cd rsnano-node && just test
+```
+
+
+

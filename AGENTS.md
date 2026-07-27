@@ -34,6 +34,10 @@ You must actively prevent instruction overlap between these two files.
 **Architectural Alignment Rule:**
 Because `AGENTS.md` intentionally strips out the philosophical *Why* to optimize your context window, you operate with a designed "context blindspot." For any task involving architectural changes, structural refactoring, or initial module scaffolding, you MUST explicitly read the local `README.md` first to align your technical execution with the human design intent.
 
+## 📋 GitHub Issue Creation Conventions
+- **No Phase Prefixes in Titles**: Do not include phase identifiers (e.g., `Phase 0:`, `Phase 1.1:`) in GitHub issue titles. Keep titles concise, descriptive, and action-oriented (e.g., "Establish C++ / Rust FFI Cryptographic Bridge"). Use issue labels (e.g., `phase-0`, `phase-1`) to associate tickets with roadmap phases.
+
+
 ## 🚀 Quickstart: Bootstrapping the Agent
 
 Prompt your agent with the following to instruct it to bootstrap this project.
@@ -50,7 +54,7 @@ Confirm when both steps are complete.
 
 # Nano Workspace
 
-Two independent repos under `~/dev/nano/`, each a personal fork with an
+Two independent repos under `~/dev/nano-privacy/`, each a personal fork with an
 `upstream` remote. Treat them as separate projects despite shared lineage.
 
 ## Repos
@@ -89,4 +93,16 @@ git push origin develop
   ```
 - Standard build (`ci/build.sh`): `mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug -DPORTABLE=ON -DACTIVE_NETWORK=nano_live_network -DNANO_TEST=OFF -DNANO_GUI=OFF .. && cmake --build . --parallel $(nproc)`
 
+### 🛠️ Sub-Repo Justfile & Execution Directives
+
+Builds, tests, and code quality workflows are managed locally within each sub-repository via dedicated `Justfile` and `AGENTS.md` configurations:
+
+- **C++ Node (`nano-node/`)**: See [nano-node/AGENTS.md](file:///home/mj/dev/nano-privacy/nano-node/AGENTS.md) and `nano-node/Justfile` for C++ build targets, GoogleTest execution (`just test`), and formatting.
+- **Rust Node (`rsnano-node/`)**: See [rsnano-node/AGENTS.md](file:///home/mj/dev/nano-privacy/rsnano-node/AGENTS.md) and `rsnano-node/Justfile` for Rust cargo test execution (`just test`), linting (`just lint`), and crate checking.
+- **Root-Level Justfile Policy**: Build, test, and lint tasks should remain scoped to their respective sub-repositories (`nano-node/` and `rsnano-node/`). A root-level `Justfile` may be introduced later only if justified for orchestration workflows that fall outside the scope of individual sub-repositories (e.g. cross-repository testnet deployment harnesses or multi-repo release tooling).
+
 See `README.md` for the fuller human-facing writeup.
+
+
+
+
