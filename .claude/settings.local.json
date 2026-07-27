@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Bash(git submodule *)",
+      "Bash(git fetch *)",
+      "Bash(git remote *)",
+      "Bash(command -v curl)",
+      "Bash(curl --version)",
+      "Bash(command -v pkg-config)",
+      "Bash(pkg-config --version)",
+      "Bash(dpkg -s libssl-dev)",
+      "Bash(dpkg -s zlib1g-dev)",
+      "Bash(cmake --version)",
+      "Bash(NANO_TEST=ON NANO_NETWORK=dev NANO_GUI=OFF NANO_TRACING=OFF ./ci/build.sh all_tests)",
+      "Bash(cmake --build . --parallel 8 --target core_test rpc_test)"
+    ]
+  }
+}

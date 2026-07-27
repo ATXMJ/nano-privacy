@@ -1,0 +1,6 @@
+[submodule "nano-node"]
+	path = nano-node
+	url = https://github.com/ATXMJ/nano-node.git
+[submodule "rsnano-node"]
+	path = rsnano-node
+	url = https://github.com/atxmj-rsnano/rsnano-node.git
