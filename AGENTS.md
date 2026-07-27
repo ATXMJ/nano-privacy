@@ -8,8 +8,9 @@ This project implements a universal agent architecture relying on two open stand
 *   **Context:** Nested `AGENTS.md` files dictate localized rules, build steps, and syntax constraints for their specific modules or scopes.
 *   **Skills:** The `.agents/skills/` directory is the master catalog for all standardized `SKILL.md` workflows.
 
-**Initialization Instruction:**
-Before executing complex workflows, you must automatically wire this architecture to match your native requirements. Evaluate your system architecture and map `.agents/skills/` to your expected runtime configuration.
+**Initialization & Skill Audit Instruction:**
+Before executing complex workflows (and upon every agent initialization), you must inspect `.agents/skills/` for any new, modified, or unshimmed skills and automatically map them to your native runtime configuration.
+*   **Skill Audit & Sync:** Audit `.agents/skills/` to identify skills that lack active shims, references, or links in your engine's proprietary directory. Immediately generate or update shims/proxies for any unmapped skills.
 *   **Primary Strategy (References over Symlinks):** Avoid OS-level symlinks when possible to prevent cross-platform permission errors. Prefer native file imports (e.g., using `@` references), generating lightweight proxy `.md` or `.mdc` files in your proprietary directories, or updating your native settings file to point to the master catalog.
 *   **Fallback Strategy:** Only if native references or proxy files are strictly unsupported by your engine, fall back to creating directory symlinks (e.g., `ln -s .agents/skills .claude/skills`).
 
@@ -41,7 +42,7 @@ Prompt your agent with the following to instruct it to bootstrap this project.
 Read the "Agent Initialization Protocol & Meta-Directives" section in the root `AGENTS.md` file. 
 
 Execute the following two steps:
-1. Perform the Workspace Architecture Auto-Wiring to map the `.agents/skills/` directory to your native configuration (preferring references/shims over symlinks).
+1. Audit `.agents/skills/` for any new, updated, or non-shimmed skills and perform Workspace Architecture Auto-Wiring to map them to your native configuration (preferring references/shims over symlinks).
 2. Audit the current working directory. If it is missing the required dual-documentation files, execute the Agent Scaffolding & Bootstrapping Protocol to generate them based on the current context.
 
 Confirm when both steps are complete.
