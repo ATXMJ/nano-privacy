@@ -12,9 +12,12 @@
 - `rsnano-node` lives under `atxmj-rsnano` org on GitHub to avoid fork network collisions.
 
 ## ⚙️ Workspace Ecosystem Configuration
-- **Issue / Ticket Tracker**: GitHub Issues (`https://github.com/ATXMJ/nano-node/issues`, `https://github.com/atxmj-rsnano/rsnano-node/issues`)
+- **Primary Roadmap Issue Tracker**: GitHub Issues (`https://github.com/ATXMJ/nano-privacy/issues`)
+- **Sub-Repo Trackers**: `https://github.com/ATXMJ/nano-node/issues`, `https://github.com/atxmj-rsnano/rsnano-node/issues`
 - **Cross-Repo Hub**: GitHub Wiki (`git@github.com:ATXMJ/nano-node.wiki.git`)
 - **Integration Tools**: `github` MCP server
 
 ## 📝 Active Session Notes (Transient)
-- Established workspace memory & cross-repo state pattern using standard Agent Skills (`.agents/skills/workspace-memory/SKILL.md`).
+- Executed workspace setup and audit per `.agents/skills/agent-bootstrap/SKILL.md` and `.agents/skills/workspace-memory/SKILL.md`.
+- Confirmed dual-documentation (`README.md` + `AGENTS.md`) across root workspace, `nano-node/`, and `rsnano-node/`.
+- Audited Phase 0 GitHub Issues (#1-#4) in `ATXMJ/nano-privacy`.
