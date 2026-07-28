@@ -1,55 +1,32 @@
-# ⚙️ Agent Initialization Protocol & Meta-Directives
+# ⚙️ Agent Meta-Directives & Initialization Protocol
 
-## 🤖 Agent Workspace Architecture & Auto-Wiring
+This workspace implements a modular agent architecture built on [AGENTS.md](https://github.com/agentsmd/agents.md) and [Agent Skills](https://github.com/agentskills/agentskills).
 
-This project implements a universal agent architecture relying on two open standards: [AGENTS.md](https://github.com/agentsmd/agents.md) for hierarchical context and [Agent Skills](https://github.com/agentskills/agentskills) for executable workflows. 
+## 🛠️ Master Workspace Skills
 
-**Your Single Source of Truth:**
-*   **Context:** Nested `AGENTS.md` files dictate localized rules, build steps, and syntax constraints for their specific modules or scopes.
-*   **Skills:** The `.agents/skills/` directory is the master catalog for all standardized `SKILL.md` workflows.
+All executable workflows and protocols are encapsulated in `.agents/skills/`:
 
-**Initialization & Skill Audit Instruction:**
-Before executing complex workflows (and upon every agent initialization), you must inspect `.agents/skills/` for any new, modified, or unshimmed skills and automatically map them to your native runtime configuration.
-*   **Skill Audit & Sync:** Audit `.agents/skills/` to identify skills that lack active shims, references, or links in your engine's proprietary directory. Immediately generate or update shims/proxies for any unmapped skills.
-*   **Primary Strategy (References over Symlinks):** Avoid OS-level symlinks when possible to prevent cross-platform permission errors. Prefer native file imports (e.g., using `@` references), generating lightweight proxy `.md` or `.mdc` files in your proprietary directories, or updating your native settings file to point to the master catalog.
-*   **Fallback Strategy:** Only if native references or proxy files are strictly unsupported by your engine, fall back to creating directory symlinks (e.g., `ln -s .agents/skills .claude/skills`).
+1. **`agent-bootstrap`** ([`SKILL.md`](file://.agents/skills/agent-bootstrap/SKILL.md)):
+   - Auto-wires `.agents/skills/` to the native agent runtime environment (preferring references/proxy files over symlinks).
+   - Enforces Dual-Documentation (`README.md` for human context + `AGENTS.md` for agent execution) across all modules.
 
-**Rule:** Never duplicate skill logic or copy `SKILL.md` contents into your proprietary folders. Always use references, shims, or symlinks to maintain `.agents/skills/` as the single source of truth.
+2. **`workspace-memory`** ([`SKILL.md`](file://.agents/skills/workspace-memory/SKILL.md)):
+   - Manages local agent operational preferences (`MEMORY.md`) and Architectural Decision Records (`DECISIONS.md`).
+   - Syncs ticket-linked, ephemeral progress snapshots to an external Cross-Repo Hub (e.g., GitHub Wiki).
 
----
-
-## 🏗️ Agent Scaffolding & Bootstrapping Protocol
-
-This repository enforces a strict "Dual-Documentation" rule. At the module level, or within any directory serving a distinct architectural purpose, you must ensure both context files exist. There should be no directory in this project where context is unclear.
-
-When scaffolding a new module or distinct directory, you must generate both:
-1.  **`README.md` (Human Context):** Focus on the *Why*. This covers high-level architecture, module purpose, visual documentation, dependency rationales, and human-readable quickstarts.
-2.  **`AGENTS.md` (Agent Context):** Focus on the *How*. This covers programmatic build scripts, exact testing commands, localized linting overrides, and strict terminal execution steps.
-
-**The Minimal Redundancy Constraint:**
-You must actively prevent instruction overlap between these two files. 
-*   If an instruction requires a human to open a GUI, use a browser, or make a subjective design decision, it belongs in the `README.md`. 
-*   If an instruction requires terminal execution, AST parsing, or strict syntax enforcement, it belongs in the `AGENTS.md`.
-
-**Architectural Alignment Rule:**
-Because `AGENTS.md` intentionally strips out the philosophical *Why* to optimize your context window, you operate with a designed "context blindspot." For any task involving architectural changes, structural refactoring, or initial module scaffolding, you MUST explicitly read the local `README.md` first to align your technical execution with the human design intent.
-
-## 📋 GitHub Issue Creation Conventions
-- **No Phase Prefixes in Titles**: Do not include phase identifiers (e.g., `Phase 0:`, `Phase 1.1:`) in GitHub issue titles. Keep titles concise, descriptive, and action-oriented (e.g., "Establish C++ / Rust FFI Cryptographic Bridge"). Use issue labels (e.g., `phase-0`, `phase-1`) to associate tickets with roadmap phases.
-
+## 📋 Ticket Creation Conventions
+- **No Phase Prefixes in Titles**: Do not include phase identifiers (e.g., `Phase 0:`, `Phase 1.1:`) in ticket/issue titles. Keep titles concise, descriptive, and action-oriented. Use labels/tags to associate tickets with roadmap phases.
 
 ## 🚀 Quickstart: Bootstrapping the Agent
 
-Prompt your agent with the following to instruct it to bootstrap this project.
+Prompt your agent with the following to initialize or audit this workspace:
 
 ```
-Read the "Agent Initialization Protocol & Meta-Directives" section in the root `AGENTS.md` file. 
+Read the root `AGENTS.md` file and execute the setup workflows in:
+1. `.agents/skills/agent-bootstrap/SKILL.md`
+2. `.agents/skills/workspace-memory/SKILL.md`
 
-Execute the following two steps:
-1. Audit `.agents/skills/` for any new, updated, or non-shimmed skills and perform Workspace Architecture Auto-Wiring to map them to your native configuration (preferring references/shims over symlinks).
-2. Audit the current working directory. If it is missing the required dual-documentation files, execute the Agent Scaffolding & Bootstrapping Protocol to generate them based on the current context.
-
-Confirm when both steps are complete.
+Confirm when workspace setup and audits are complete.
 ```
 
 # Nano Workspace
