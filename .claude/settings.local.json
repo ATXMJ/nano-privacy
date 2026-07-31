@@ -13,7 +13,8 @@
       "Bash(dpkg -s zlib1g-dev)",
       "Bash(cmake --version)",
       "Bash(NANO_TEST=ON NANO_NETWORK=dev NANO_GUI=OFF NANO_TRACING=OFF ./ci/build.sh all_tests)",
-      "Bash(cmake --build . --parallel 8 --target core_test rpc_test)"
+      "Bash(cmake --build . --parallel 8 --target core_test rpc_test)",
+      "WebSearch"
     ]
   }
 }

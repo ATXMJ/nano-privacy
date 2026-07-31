@@ -10,6 +10,7 @@
 
 ## ⚠️ Environment Gotchas & Quirks
 - `rsnano-node` lives under `atxmj-rsnano` org on GitHub to avoid fork network collisions.
+- **Build Parallelism & Memory**: `just build-tests` uses `jobs=4` to avoid Debug linking memory exhaustion (`ld signal 9` OOM) on multi-core systems.
 
 ## ⚙️ Workspace Ecosystem Configuration
 - **Primary Roadmap Issue Tracker**: GitHub Issues (`https://github.com/ATXMJ/nano-privacy/issues`)
@@ -21,3 +22,4 @@
 - Executed workspace setup and audit per `.agents/skills/agent-bootstrap/SKILL.md` and `.agents/skills/workspace-memory/SKILL.md`.
 - Confirmed dual-documentation (`README.md` + `AGENTS.md`) across root workspace, `nano-node/`, and `rsnano-node/`.
 - Audited Phase 0 GitHub Issues (#1-#4) in `ATXMJ/nano-privacy`.
+- Verified 100% pass baseline across all 4 `nano-node` test harnesses (1,804 passed, 0 failed).
